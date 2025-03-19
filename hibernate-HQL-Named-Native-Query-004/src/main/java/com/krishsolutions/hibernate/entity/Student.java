@@ -8,10 +8,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "students")
+@NamedQueries({
+	@NamedQuery(name="find_students_ByName" ,query = "from Student s where s.name=:NAME"),
+	@NamedQuery(name="find_startWith_A_latter",query="from Student s where s.name like :NAMELIKE")
+})
 public class Student {
 
 	@Id
@@ -22,7 +28,7 @@ public class Student {
 	@Column(name = "student_name")
 	private String name;// value type
 
-	@Column(name = "student_age")
+	@Column(name = "student_stream")
 	private int age;// value type
 	
 	@Column(name="student_qualification")
