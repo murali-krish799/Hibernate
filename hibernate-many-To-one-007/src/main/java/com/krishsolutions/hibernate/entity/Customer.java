@@ -30,7 +30,7 @@ public class Customer {
 	@Column(name = "customer_occupation")
 	private String occupation;
 
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Order> orders;
 
 	public int getId() {
