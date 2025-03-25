@@ -1,6 +1,7 @@
 package com.krishsolutions.hibernate.entity;
 
 import java.util.List;
+import java.util.Map;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -10,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapKeyColumn;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,6 +34,12 @@ public class Son {
 	)
 	@Column(name = "son_nick_names")
 	private List<String> nickNames;
+
+	@ElementCollection
+	@CollectionTable(name = "likedItems", joinColumns = @JoinColumn(name = "son_id"))
+	@MapKeyColumn(name = "items")
+	@Column(name="my_items")
+	private Map<String, String> likedItems;
 
 	public int getId() {
 		return id;
@@ -57,9 +65,17 @@ public class Son {
 		this.nickNames = nickNames;
 	}
 
+	public Map<String, String> getLikedItems() {
+		return likedItems;
+	}
+
+	public void setLikedItems(Map<String, String> likedItems) {
+		this.likedItems = likedItems;
+	}
+
 	@Override
 	public String toString() {
-		return "Son [id=" + id + ", name=" + name + ", nickNames=" + nickNames + "]";
+		return "Son [id=" + id + ", name=" + name + ", nickNames=" + nickNames + ", likedItems=" + likedItems + "]";
 	}
 
 }

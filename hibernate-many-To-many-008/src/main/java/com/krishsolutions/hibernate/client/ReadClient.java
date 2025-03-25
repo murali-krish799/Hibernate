@@ -24,7 +24,10 @@ public class ReadClient {
 		transaction.begin();
 
 		Movie movie = session.get(Movie.class, 3);
+		
 		System.out.println(movie);
+//  remove movie along with actor 
+		//		session.remove(movie);
 		transaction.commit();
 		session.close();
 	}
